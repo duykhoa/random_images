@@ -13,6 +13,12 @@ class ImagesController < ApplicationController
   end
 
   def check_image_class
-    params[:type] == "cat" ? Cat.new : Robohash.new
+    if params[:type] == "cat"
+      RndImg::Cat.new
+    elsif params[:type] == "9gag"
+      RndImg::P9gagImg.new
+    else
+      RndImg::Robohash.new
+    end
   end
 end
